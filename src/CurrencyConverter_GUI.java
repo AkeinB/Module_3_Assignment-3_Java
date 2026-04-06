@@ -46,9 +46,17 @@ public class CurrencyConverter_GUI extends JFrame{
         add(ConvertBtn);
 
 
-//      ============== CONVERSION LOGIC ==============
+//      ============== LOGIC ==============
         ConversionLG convert = new ConversionLG();
-        convert.Converter();
+
+        try {
+            double result = convert.Converter();
+        } catch () {
+
+        }
+
+
+        setVisible(true);
 
         ClearBtn = new JButton("Clear");
         add(ClearBtn);
@@ -80,5 +88,5 @@ public class CurrencyConverter_GUI extends JFrame{
         // If setting the look and feel fails, we can just ignore it and use the default
     }
 
-    new CurrencyConverter_GUI().setVisible(true);
+    new CurrencyConverter_GUI();
 }

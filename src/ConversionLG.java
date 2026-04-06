@@ -10,15 +10,23 @@ public class ConversionLG {
     private double USD;
     private double CAN;
     private double EURO;
+    private double result;
 
     ConversionLG() {
         this.USD = 129.02;
         this.CAN = 97.50;
         this.EURO = 164.33;
+        this.result = 0;
     }
 
-    public double Converter(){
+    public double Converter(double amount, String currency) {
 
+        return switch (currency) {
+            case "USD" -> amount * USD;
+            case "CAN" -> amount * CAN;
+            case "EURO" -> amount * EURO;
+            default -> 0;
+        };
 
     }
 }
