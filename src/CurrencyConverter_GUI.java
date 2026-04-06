@@ -25,7 +25,7 @@ public static class CurrencyConverter_GUI extends JFrame{
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         //gridlayout
-        setLayout(new GridLayout(3,2,10,10));
+        setLayout(new GridLayout(5,2,10,10));
 
         //components
         add(new JLabel("Input $:"));
@@ -58,7 +58,7 @@ public static class CurrencyConverter_GUI extends JFrame{
                     JMBResult.setText(String.format("%.2f", convertedAmount));
 
                     try(PrintWriter out = new PrintWriter(new FileWriter("conversion_history.txt", true))){
-                        out.println(JMBResult.getText() + " JMD" + " " + "Converted From " + Input.getText() + " " +
+                        out.println("$" + JMBResult.getText() + " JMD" + " " + "Converted From " + "$" + Input.getText() + " " +
                                 Currency_Combo.getSelectedItem());
                         JOptionPane.showMessageDialog(null, "Conversion saved successfully!");
                     }
