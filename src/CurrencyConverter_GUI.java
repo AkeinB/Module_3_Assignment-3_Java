@@ -11,7 +11,7 @@ import java.awt.event.*;
 import java.io.*;
 
 
-public class CurrencyConverter_GUI extends JFrame{
+public static class CurrencyConverter_GUI extends JFrame{
 
     private JTextField Input;
     private JTextField JMBResult;
@@ -49,12 +49,30 @@ public class CurrencyConverter_GUI extends JFrame{
 //      ============== LOGIC ==============
         ConversionLG convert = new ConversionLG();
 
-        try {
-            double result = convert.Converter();
-        } catch () {
+        ConvertBtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    double result = Double.parseDouble(Input.getText());
+                    String currency = (String) Currency_Combo.getSelectedItem();
+                    double convertedAmount = convert.Converter(result, currency);
+                    JMBResult.setText(String.format("%.2f", convertedAmount));
 
-        }
+                    try(PrintWriter out = new PrintWriter(new FileWriter("conversion_history.txt", true))){
+                        out.println(JMBResult.getText() + " JMD" + " " + "Converted From " + Input.getText() + " " +
+                                Currency_Combo.getSelectedItem());
+                        JOptionPane.showMessageDialog(null, "Conversion saved successfully!");
+                    }
+                    catch(IOException ex){
+                        JOptionPane.showMessageDialog(null, "Conversion save failed!");}
+                }
+                catch (NumberFormatException ex)
+                {
+                    JOptionPane.showMessageDialog(null,
+                            "Please enter numbers only!","Validation Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
 
+        });
 
         setVisible(true);
 
@@ -68,20 +86,13 @@ public class CurrencyConverter_GUI extends JFrame{
                 Currency_Combo.setSelectedIndex(0);
             });
 
-        try(PrintWriter out = new PrintWriter(new FileWriter("conversion_history.txt", true))){
-            out.println(JMBResult.getText()+ "JMD" + " " + "Converted From " + Currency_Combo.getSelectedItem());
-            JOptionPane.showMessageDialog(this, "Conversion saved successfully!");
-        }
-        catch(IOException ex){
-        JOptionPane.showMessageDialog(this, "Conversion save failed!");}
-
     }
 
 
 }
 
 
- void main() {
+ static void main(String[] args) {
     try{
         UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
     } catch (Exception e) {
