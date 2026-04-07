@@ -19,6 +19,7 @@ public class ConversionLG {
 
     public double Converter(double amount, String currency) {
 
+
         return switch (currency) {
             case "USD" -> amount * USD;
             case "CAN" -> amount * CAN;
