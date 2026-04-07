@@ -14,7 +14,7 @@ import java.io.*;
 public static class CurrencyConverter_GUI extends JFrame{
 
     private JTextField Input;
-    private JTextField JMBResult;
+    private JTextField JMDResult;
     private JComboBox Currency_Combo;
     private JButton ConvertBtn, ClearBtn;
 
@@ -28,19 +28,19 @@ public static class CurrencyConverter_GUI extends JFrame{
         setLayout(new GridLayout(5,2,10,10));
 
         //components
-        add(new JLabel("Input $:"));
+        add(new JLabel("  Input $:"));
         Input = new JTextField();
         add(Input);
 
-        add(new JLabel("Currency Type:"));
+        add(new JLabel("  Currency Type:"));
         String[] Currency = {"USD", "CAN", "EURO"};
         Currency_Combo = new JComboBox(Currency);
         add(Currency_Combo);
 
-        add(new JLabel("JMB Amount $:"));
-        JMBResult = new JTextField();
-        add(JMBResult);
-        JMBResult.setEditable(false);
+        add(new JLabel("  JMD Amount $:"));
+        JMDResult = new JTextField();
+        add(JMDResult);
+        JMDResult.setEditable(false);
 
         ConvertBtn = new JButton("Convert");
         add(ConvertBtn);
@@ -55,10 +55,10 @@ public static class CurrencyConverter_GUI extends JFrame{
                     double result = Double.parseDouble(Input.getText());
                     String currency = (String) Currency_Combo.getSelectedItem();
                     double convertedAmount = convert.Converter(result, currency);
-                    JMBResult.setText(String.format("%.2f", convertedAmount));
+                    JMDResult.setText(String.format("%.2f", convertedAmount));
 
                     try(PrintWriter out = new PrintWriter(new FileWriter("conversion_history.txt", true))){
-                        out.println("$" + JMBResult.getText() + " JMD" + " " + "Converted From " + "$" + Input.getText() + " " +
+                        out.println("$" + JMDResult.getText() + " JMD" + " " + "Converted From " + "$" + Input.getText() + " " +
                                 Currency_Combo.getSelectedItem());
                         JOptionPane.showMessageDialog(null, "Conversion saved successfully!");
                     }
@@ -82,7 +82,7 @@ public static class CurrencyConverter_GUI extends JFrame{
 //      return all fields to default values
             ClearBtn.addActionListener(e -> {
                 Input.setText("");
-                JMBResult.setText("");
+                JMDResult.setText("");
                 Currency_Combo.setSelectedIndex(0);
             });
 
