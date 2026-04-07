@@ -88,9 +88,7 @@ public static class CurrencyConverter_GUI extends JFrame{
 
     }
 
-
 }
-
 
  static void main(String[] args) {
     try{
