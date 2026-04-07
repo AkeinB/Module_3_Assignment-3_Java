@@ -16,7 +16,7 @@ public static class CurrencyConverter_GUI extends JFrame{
     private JTextField Input;
     private JTextField JMBResult;
     private JComboBox Currency_Combo;
-    private JButton ConvertBtn, ClearBtn, SaveBtn;
+    private JButton ConvertBtn, ClearBtn;
 
     public CurrencyConverter_GUI() {
         //window settings
